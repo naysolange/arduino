@@ -58,11 +58,11 @@ void loop() {
     // entonces apago y prendo el led y muestro la poesía
     if(promedio2 - promedio1 > DIFERENCIA_MINIMA){
         digitalWrite(PIN_LED, LOW);
-        mostrarPalabra();            
+        delay(2000);            
         digitalWrite(PIN_LED, HIGH);
-        mostrarPalabra();  
-        mostrarPalabra(); 
-        mostrarPalabra(); 
+        for(int i=0; i<random(3,6); i++) {
+          mostrarPalabra();  
+        }
         lcd.clear();
         lcd.noBacklight(); 
     }
