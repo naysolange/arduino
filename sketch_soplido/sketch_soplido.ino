@@ -1,5 +1,4 @@
 #include <LiquidCrystal_I2C.h>
-#include <stdio.h>
 #define PIN_LED A0                // High side of the resistor
 #define PIN_MEDICION A6           // Low side of resistor and anode of LED
 #define DIFERENCIA_MINIMA 19.00           
@@ -52,16 +51,17 @@ void loop() {
   if(j == CANTIDAD_SENSADA && k == CANTIDAD_SENSADA) {
     float promedio1 = promedioSuma(dataSensada);
     float promedio2 = promedioSuma(dataSensada2);
-    //Serial.println(promedio2 - promedio1);
+    Serial.println(promedio2 - promedio1);
 
     // Si la diferencia entre el promedio de los segundos valores leídos es mayor a 
-    // un X valor entonces quiere decir que hubo una variación (alguien hizo un soplido)
-    // entonces apago y prendo el led con un delay en medio
+    // la DIFERENCIA_MINIMA entonces quiere decir que hubo una variación (alguien hizo un soplido)
+    // entonces apago y prendo el led y muestro la poesía
     if(promedio2 - promedio1 > DIFERENCIA_MINIMA){
         digitalWrite(PIN_LED, LOW);
         mostrarPalabra();            
         digitalWrite(PIN_LED, HIGH);
         mostrarPalabra();  
+        mostrarPalabra(); 
         mostrarPalabra(); 
         lcd.clear();
         lcd.noBacklight(); 
@@ -74,28 +74,36 @@ void loop() {
 
 void mostrarPalabra() {
 
-  String palabra;
   String palabraRecortada1;
   String palabraRecortada2;
-  int posicion = random(CANTIDAD_PALABRAS);
-  Serial.println(posicion);
-  palabra = palabras[posicion];
-  int longitudPalabra = palabra.length();
   int maxCaracteresPorRenglon = 8;
   
-  if(longitudPalabra>maxCaracteresPorRenglon) {   
+  // Obtiene una palabra al azar del array
+  int posicion = random(CANTIDAD_PALABRAS);
+  String palabra = palabras[posicion];
+  
+  int longitudPalabra = palabra.length();
+
+  // La libreria del display de 16x1 lo maneja como si fuera 8x2
+  // por eso tengo que cortar la palabra si tiene más de 8 caracteres 
+  // y pasarla al "renglón" siguiente
+  if(longitudPalabra > maxCaracteresPorRenglon) {   
     palabraRecortada1 = palabra.substring(0, 8);
     palabraRecortada2 = palabra.substring(8, longitudPalabra);
   } else {
     palabraRecortada1 = palabra;
   }
- 
+
+  // Limpio y prendo el display
   lcd.clear();
   lcd.backlight();
+  // Posiciono el cursor del primer "renglón" e imprimo
   lcd.setCursor(0,0);
   lcd.print(palabraRecortada1); 
+  // Posiciono el cursor del segundo "renglón" e imprimo
   lcd.setCursor(0,1);
   lcd.print(palabraRecortada2); 
+  // Espero 3 segundos para poder leer la palabra
   delay(3000);
 }
 
