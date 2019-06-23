@@ -3,7 +3,7 @@
 #define PIN_MEDICION A6           // Low side of resistor and anode of LED
 #define DIFERENCIA_MINIMA 19.00           
 #define CANTIDAD_SENSADA 10
-#define CANTIDAD_PALABRAS 25
+#define CANTIDAD_PALABRAS 40
 
 // Variables globales
 LiquidCrystal_I2C lcd(0x27,8,2);
@@ -11,11 +11,11 @@ long int dataSensada[CANTIDAD_SENSADA];
 long int dataSensada2[CANTIDAD_SENSADA];
 int j = 0;
 int k = 0;
-String palabras[CANTIDAD_PALABRAS] = {"fatigada","la noche","estoy mirando","en alto","tal dulzura","no preguntes","noche",
-"ojos","luna blanca","puedo escapar","cielo profundo","afuera llueve","por la vida","corazon","tus brazos", 
-"sin hacer ruido","salvame","era silencio","maquina","de un suspiro","la mirada","no entender","mueres de sed",
-"tus pupilas","perfume tenue"};
-
+String palabras[CANTIDAD_PALABRAS] = {
+"fatigada","la noche","estoy mirando","en alto","tal dulzura","no preguntes","noche","ojos...","luna blanca","puedo escapar",
+"cielo profundo","afuera llueve","por la vida","corazon...","tus brazos","sin hacer ruido","salvame","era silencio","maquina","de un suspiro",
+"la mirada","no entender","mueres de sed","tus pupilas","perfume tenue","Oh viajero","y dile","huye hacia","de esta fiebre","corre, camina",
+"todo eso que","pienso que","Hasta cuando?","el sol","para tu suerte","recuerdos de","el alma","como de mujer","a mirarlas","contemplo el mar"};
 
 void setup() {
   // Inicializa display
@@ -51,7 +51,7 @@ void loop() {
   if(j == CANTIDAD_SENSADA && k == CANTIDAD_SENSADA) {
     float promedio1 = promedioSuma(dataSensada);
     float promedio2 = promedioSuma(dataSensada2);
-    Serial.println(promedio2 - promedio1);
+    //Serial.println(promedio2 - promedio1);
 
     // Si la diferencia entre el promedio de los segundos valores leídos es mayor a 
     // la DIFERENCIA_MINIMA entonces quiere decir que hubo una variación (alguien hizo un soplido)
@@ -81,8 +81,10 @@ void mostrarPalabra() {
   // Obtiene una palabra al azar del array
   int posicion = random(CANTIDAD_PALABRAS);
   String palabra = palabras[posicion];
-  
+  Serial.println(posicion);
+  Serial.println(palabra);
   int longitudPalabra = palabra.length();
+   Serial.println(longitudPalabra);
 
   // La libreria del display de 16x1 lo maneja como si fuera 8x2
   // por eso tengo que cortar la palabra si tiene más de 8 caracteres 
