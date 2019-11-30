@@ -10,16 +10,17 @@ Adafruit_NeoPixel pixels(CANT_PIXELS, PIN_TIRA_LED, NEO_GRB + NEO_KHZ800);
 int APAGAR_LEDS = true;
 uint32_t colorTexto = pixels.Color(0, 90, 20);
 char *poema1[] = { "eres", "tu",  "la", "tierra", "teneis", "un", "ave"};
+char *poema2[] = {"grita", "el", "mar", "escuche"};
 
 void setup() {
   pinMode(MIC, INPUT);
   pinMode(LED, OUTPUT);
   randomSeed(sizeof(poema1));
-  //Serial.begin(9600);
+  Serial.begin(9600);
   pixels.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
 }
 
-
+int cantSoplidos = 0;
 
 void loop() {
 
@@ -39,13 +40,22 @@ void loop() {
    
  if(valorMicLeido == HIGH) {
 
+    cantSoplidos++;
+
     // Prende y apaga led que indica inicio
     digitalWrite(LED, HIGH);
     delay(1000);
     digitalWrite(LED, LOW);
 
     pixels.clear();
-    escribirPoema1();
+    
+    if(cantSoplidos == 1) {
+        escribirPoema1();
+    } else {
+        escribirPoema2();
+        cantSoplidos = 0;
+    } 
+    
   }
 }
 
@@ -82,6 +92,12 @@ void escribirPoema1() {
   escribirFrase2Poema1();
   escribirFrase3Poema1();
   escribirFrase4Poema1();
+}
+
+void escribirPoema2() {
+  escribirFrase1Poema2();
+  escribirFrase2Poema2();
+  escribirFrase3Poema2();
 }
 
 void escribirFrase1Poema1() {
@@ -146,6 +162,55 @@ void escribirFrase4Poema1() {
   delay(DELAY);
 
   apagarLeds();
+}
+
+void escribirFrase1Poema2() {
+
+  dibujarG(12);
+  dibujarR(20);
+  dibujarI(27);
+  dibujarT(33);
+  dibujarA(40);
+  
+  pixels.show();   
+  delay(DELAY);
+
+  apagarLeds();
+  
+}
+
+
+void escribirFrase2Poema2() {
+
+  dibujarE(12);
+  dibujarL(19);
+  dibujarM(30);
+  dibujarA(37);
+  dibujarR(46);
+  
+  pixels.show();   
+  delay(DELAY);
+
+  apagarLeds();
+  
+}
+
+
+void escribirFrase3Poema2() {
+
+  dibujarE(6);
+  dibujarS(13);
+  dibujarC(20);
+  dibujarU(27);
+  dibujarC(34);
+  dibujarH(41);
+  dibujarE(48);
+  
+  pixels.show();   
+  delay(DELAY);
+
+  apagarLeds();
+  
 }
 
 void dibujarL(uint16_t offset) {
@@ -287,6 +352,23 @@ void dibujarN(uint16_t offset) {
   pixels.setPixelColor(obtenerPixel(4,4+offset), colorTexto);
 }
 
+
+void dibujarM(uint16_t offset) {
+  pixels.setPixelColor(obtenerPixel(0,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,1+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,3+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(1,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(1,2+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(1,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(3,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(3,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,4+offset), colorTexto);
+}
+
 void dibujarV(uint16_t offset) {
   pixels.setPixelColor(obtenerPixel(0,0+offset), colorTexto);
   pixels.setPixelColor(obtenerPixel(0,4+offset), colorTexto);
@@ -297,6 +379,58 @@ void dibujarV(uint16_t offset) {
   pixels.setPixelColor(obtenerPixel(3,1+offset), colorTexto);
   pixels.setPixelColor(obtenerPixel(3,3+offset), colorTexto);
   pixels.setPixelColor(obtenerPixel(4,2+offset), colorTexto);
+}
+
+void dibujarC(uint16_t offset) {
+  pixels.setPixelColor(obtenerPixel(0,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,1+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,2+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,3+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(1,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(3,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,1+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,2+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,3+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,4+offset), colorTexto);
+}
+
+void dibujarG(uint16_t offset) {
+  pixels.setPixelColor(obtenerPixel(0,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,1+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,2+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,3+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(1,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,2+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,3+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(3,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(3,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,1+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,2+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,3+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,4+offset), colorTexto);
+}
+
+void dibujarH(uint16_t offset) {
+  pixels.setPixelColor(obtenerPixel(0,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(0,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(1,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(1,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,1+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,2+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,3+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(2,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(3,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(3,4+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,0+offset), colorTexto);
+  pixels.setPixelColor(obtenerPixel(4,4+offset), colorTexto);
 }
 
 void apagarLeds() {
