@@ -22,11 +22,26 @@ void setup() {
   matrix.setBrightness(50);
   matrix.setTextColor(matrix.Color(255,0,200));
 }
+boolean mostrarTexto = true;
+String texto = "";
 
 void loop() {
-  matrix.fillScreen(0);
-  matrix.setCursor(x, 0);
-  scroll("Luminiscencias del deseo", 40);
+
+  if(mostrarTexto){
+   texto = "prueba";
+   dibujar(texto);
+   mostrarTexto = false;
+  }
+ 
+}
+
+void dibujar(String texto) {
+  while(true) {
+    matrix.clear(); 
+    matrix.fillScreen(0);
+    matrix.setCursor(x, 0);
+    scroll(texto.c_str(), 40);
+  }
 }
 
 void scroll(char* message, int delays) {
