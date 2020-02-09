@@ -18,6 +18,7 @@ int line_pass = 0;
 int offset = 6;
 
 uint32_t colorTexto = matrix.Color(0, 90, 20);
+boolean dibujarPatronRandom = true;
 
 void setup() {
   Serial.begin(9600);
@@ -26,22 +27,16 @@ void setup() {
 
 void loop() {
 
-  matrix.fillScreen(0);
-  matrix.setCursor(0, 0);
- // matrix.setTextColor(matrix.Color(90,0,90));
-  //matrix.print("l");
- //matrix.show();
+  if(dibujarPatronRandom) {
+    prenderPixel(0,0,0,colorTexto);
+    matrix.show();
+    dibujarPatronRandom = false;
+  } else {
+    scroll("hola");
+  }
   
-  mostrarPoesia();
 }
 
-void mostrarPoesia() {
-
-  matrix.fillScreen(0);
-  matrix.setCursor(0, 0);
-  scroll("hola");
-   
-}
 
 void dibujarA(int offset) {
     prenderPixel(1,2, offset, colorTexto);
@@ -122,24 +117,44 @@ int obtenerPixel(int x, int y) {
   return y*60 + x;
 }
 
-void scroll(char* message) {
+void mostrarTexto(String texto, int nuevoOffset) {
+
+  for(int i=0; i<texto.length(); i++) {
+    char letra = texto.charAt(i);
+    switch(letra) {
+      case 'a':
+        dibujarA(nuevoOffset+offset*i);
+        break;
+      case 'h':
+        dibujarH(nuevoOffset+offset*i);
+        break;
+      case 'o':
+       dibujarO(nuevoOffset+offset*i);
+       break;
+      case 'l':
+       dibujarL(nuevoOffset+offset*i);
+       break;
+    }
+  }
+
+  matrix.show();
+  delay(30);
+  matrix.clear();
+  
+}
+
+void scroll(String texto) {
   
   int nuevoOffset = 60;
   int i = 0;
 
   while(true) {
-    Serial.println(nuevoOffset);
-    dibujarH(nuevoOffset);
-    dibujarO(nuevoOffset+offset);
-    dibujarL(nuevoOffset+offset*2);
-    dibujarA(nuevoOffset+offset*3);
-    matrix.show();
-    delay(30);
-    matrix.clear();
-    
+
+    mostrarTexto(texto, nuevoOffset);
+       
     if(nuevoOffset+offset*3 < 0) {
-      Serial.println("entroooo");
       matrix.show();
+      dibujarPatronRandom = true;
       break;
     }
     
