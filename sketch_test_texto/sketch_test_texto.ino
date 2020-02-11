@@ -32,7 +32,15 @@ void loop() {
     matrix.show();
     dibujarPatronRandom = false;
   } else {
-    scroll("aaaaahhhhhaaaaa");
+   
+    int indice = 100;
+    char poesia[indice];
+
+    for(int i=0; i<100; i++) {
+      poesia[i] = 'a';
+    }
+    
+    scroll(poesia);
   }
   
 }
@@ -117,10 +125,10 @@ int obtenerPixel(int x, int y) {
   return y*60 + x;
 }
 
-void mostrarTexto(String texto, int nuevoOffset) {
+void mostrarTexto(char* texto, int nuevoOffset, int longitudTexto) {
 
-  for(int i=0; i<texto.length(); i++) {
-    char letra = texto.charAt(i);
+  for(int i=0; i<longitudTexto; i++) {
+    char letra = texto[i];
     switch(letra) {
       case 'a':
         dibujarA(nuevoOffset+offset*i);
@@ -143,19 +151,22 @@ void mostrarTexto(String texto, int nuevoOffset) {
   
 }
 
-void scroll(String texto) {
-  
+void scroll(char texto[]) {
+
+  int longitudTexto = strlen(texto);
+
+  Serial.println(longitudTexto);
   int nuevoOffset = 60;
   int i = 0;
 
   while(true) {
 
-    mostrarTexto(texto, nuevoOffset);
+    mostrarTexto(texto, nuevoOffset, longitudTexto);
 
-    int yaMostreTodasLasLetras = nuevoOffset+offset*(texto.length()-1);
+    int yaMostreTodasLasLetras = nuevoOffset+offset*(longitudTexto-1);
 
-     Serial.println(yaMostreTodasLasLetras);
-       
+    //Serial.println(yaMostreTodasLasLetras);
+      
     if(yaMostreTodasLasLetras < 0) {
       matrix.show();
       dibujarPatronRandom = true;
