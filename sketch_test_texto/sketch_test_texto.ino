@@ -32,7 +32,7 @@ void loop() {
     matrix.show();
     dibujarPatronRandom = false;
   } else {
-    scroll("hola");
+    scroll("aaaaahhhhhaaaaa");
   }
   
 }
@@ -151,8 +151,12 @@ void scroll(String texto) {
   while(true) {
 
     mostrarTexto(texto, nuevoOffset);
+
+    int yaMostreTodasLasLetras = nuevoOffset+offset*(texto.length()-1);
+
+     Serial.println(yaMostreTodasLasLetras);
        
-    if(nuevoOffset+offset*3 < 0) {
+    if(yaMostreTodasLasLetras < 0) {
       matrix.show();
       dibujarPatronRandom = true;
       break;
