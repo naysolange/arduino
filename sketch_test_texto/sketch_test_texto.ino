@@ -1,24 +1,14 @@
-#include <Adafruit_GFX.h>
 #include <Adafruit_NeoPixel.h>
-#include <Adafruit_NeoMatrix.h>
 
 #define PIN_TIRA_LED 6 
+#define CANT_PIXELS 480
 
-Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(60, 8, PIN_TIRA_LED,
-  NEO_MATRIX_TOP  + NEO_MATRIX_LEFT +
-  NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
-  NEO_GRB         + NEO_KHZ800);
+Adafruit_NeoPixel matrix(CANT_PIXELS, PIN_TIRA_LED, NEO_GRB + NEO_KHZ800);
 
-
-int pixelPerChar = 4;
-int y = matrix.height();
-int x = matrix.width();
-int pass = 0;
-int line_pass = 0;
 int offset = 6;
 
 uint32_t colorTexto = matrix.Color(0, 90, 20);
-boolean dibujarPatronRandom = true;
+boolean mostrarPoesia = true, mostrarPatron = true;
 
 void setup() {
   Serial.begin(9600);
@@ -27,21 +17,49 @@ void setup() {
 
 void loop() {
 
-  if(dibujarPatronRandom) {
-    prenderPixel(0,0,0,colorTexto);
-    matrix.show();
-    dibujarPatronRandom = false;
-  } else {
-   
-    int indice = 100;
-    char poesia[indice];
+   matrix.clear();
 
-    for(int i=0; i<100; i++) {
-      poesia[i] = 'a';
-    }
+   mostrarPatronLuminico();
     
-    scroll(poesia);
+   if(mostrarPoesia) {
+     int indice = 10;
+     char poesia[indice];
+  
+     for(int i=0; i<10; i++) {
+       poesia[i] = 'h';
+     }
+      
+     scroll(poesia);
+    }
+   
+  
+}
+
+void mostrarPatronLuminico() {
+
+ uint32_t colorLed;
+ int cantidadDeVueltas = random(15,50);
+
+ for(int i=0; i<cantidadDeVueltas; i++) {
+  int ledAPrender = random(0,CANT_PIXELS);  
+  switch(random(1,3)) {
+    case 1:
+      // Magenta
+      colorLed = matrix.Color(random(50,200), 0, random(10,100));
+      break;
+    case 2:
+     // Naranja
+      colorLed = matrix.Color(random(200,255), random(50,100), 0);
+      break;
   }
+
+  colorTexto = colorLed;
+ 
+  matrix.setPixelColor(ledAPrender, colorLed);
+  matrix.show();    
+ }
+
+ delay(200);
   
 }
 
@@ -169,7 +187,7 @@ void scroll(char texto[]) {
       
     if(yaMostreTodasLasLetras < 0) {
       matrix.show();
-      dibujarPatronRandom = true;
+      mostrarPoesia = false;
       break;
     }
     
