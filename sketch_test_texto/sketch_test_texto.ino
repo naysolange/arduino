@@ -43,11 +43,11 @@ void loop() {
     scroll(poesia);
   }*/
   /*matrix.setTextWrap(false);
-  matrix.setBrightness(40);
+  matrix.setBrightness(50);
   matrix.clear();
   matrix.setCursor(0,0);
-  matrix.print("m");*/
-  dibujarM(0);
+  matrix.print("z");*/
+  dibujarZ(0);
   matrix.show();
   
 }
@@ -255,6 +255,40 @@ void dibujarM(int offset) {
     prenderPixel(4, 6, offset, colorTexto);
 }
 
+
+void dibujarN(int offset) {
+    prenderPixel(0, 2, offset, colorTexto);
+    prenderPixel(0, 3, offset, colorTexto);
+    prenderPixel(0, 4, offset, colorTexto);
+    prenderPixel(0, 5, offset, colorTexto);
+    prenderPixel(0, 6, offset, colorTexto);
+    prenderPixel(1, 3, offset, colorTexto);
+    prenderPixel(2, 2, offset, colorTexto);
+    prenderPixel(3, 2, offset, colorTexto);
+    prenderPixel(4, 3, offset, colorTexto);
+    prenderPixel(4, 4, offset, colorTexto);
+    prenderPixel(4, 5, offset, colorTexto);
+    prenderPixel(4, 6, offset, colorTexto);
+}
+
+void dibujarEnie(int offset) {
+    prenderPixel(0, 2, offset, colorTexto);
+    prenderPixel(0, 3, offset, colorTexto);
+    prenderPixel(0, 4, offset, colorTexto);
+    prenderPixel(0, 5, offset, colorTexto);
+    prenderPixel(0, 6, offset, colorTexto);
+    prenderPixel(1, 1, offset, colorTexto);
+    prenderPixel(1, 3, offset, colorTexto);
+    prenderPixel(2, 1, offset, colorTexto);
+    prenderPixel(2, 2, offset, colorTexto);
+    prenderPixel(3, 1, offset, colorTexto);
+    prenderPixel(3, 2, offset, colorTexto);
+    prenderPixel(4, 3, offset, colorTexto);
+    prenderPixel(4, 4, offset, colorTexto);
+    prenderPixel(4, 5, offset, colorTexto);
+    prenderPixel(4, 6, offset, colorTexto);
+}
+
 void dibujarO(int offset) {
     prenderPixel(1,2, offset, colorTexto);
     prenderPixel(2,2, offset, colorTexto);
@@ -270,6 +304,172 @@ void dibujarO(int offset) {
     prenderPixel(3,6, offset, colorTexto);
 }
 
+void dibujarP(int offset) {
+    prenderPixel(0, 2, offset, colorTexto);
+    prenderPixel(0, 3, offset, colorTexto);
+    prenderPixel(0, 4, offset, colorTexto);
+    prenderPixel(0, 5, offset, colorTexto);
+    prenderPixel(0, 6, offset, colorTexto);
+    prenderPixel(0, 7, offset, colorTexto);
+    prenderPixel(1, 3, offset, colorTexto);
+    prenderPixel(1, 4, offset, colorTexto);
+    prenderPixel(2, 2, offset, colorTexto);
+    prenderPixel(2, 5, offset, colorTexto);
+    prenderPixel(3, 2, offset, colorTexto);
+    prenderPixel(3, 5, offset, colorTexto);
+    prenderPixel(4, 3, offset, colorTexto);
+    prenderPixel(4, 4, offset, colorTexto);
+}
+
+
+void dibujarQ(int offset) {
+    prenderPixel(0, 3, offset, colorTexto);
+    prenderPixel(0, 4, offset, colorTexto);
+    prenderPixel(1, 2, offset, colorTexto);
+    prenderPixel(1, 5, offset, colorTexto);
+    prenderPixel(2, 2, offset, colorTexto);
+    prenderPixel(2, 5, offset, colorTexto);
+    prenderPixel(3, 3, offset, colorTexto);
+    prenderPixel(3, 4, offset, colorTexto);
+    prenderPixel(4, 2, offset, colorTexto);
+    prenderPixel(4, 3, offset, colorTexto);
+    prenderPixel(4, 4, offset, colorTexto);
+    prenderPixel(4, 5, offset, colorTexto);
+    prenderPixel(4, 6, offset, colorTexto);
+    prenderPixel(4, 7, offset, colorTexto);
+}
+
+
+void dibujarR(int offset) {
+    prenderPixel(0, 2, offset, colorTexto);
+    prenderPixel(0, 3, offset, colorTexto);
+    prenderPixel(0, 4, offset, colorTexto);
+    prenderPixel(0, 5, offset, colorTexto);
+    prenderPixel(0, 6, offset, colorTexto);   
+    prenderPixel(1, 3, offset, colorTexto);
+    prenderPixel(2, 2, offset, colorTexto);
+    prenderPixel(3, 2, offset, colorTexto);
+    prenderPixel(4, 3, offset, colorTexto);
+}
+
+
+void dibujarS(int offset) {
+    prenderPixel(0, 3, offset, colorTexto);
+    prenderPixel(0, 6, offset, colorTexto);
+    prenderPixel(1, 2, offset, colorTexto);
+    prenderPixel(1, 4, offset, colorTexto);
+    prenderPixel(1, 6, offset, colorTexto);
+    prenderPixel(2, 2, offset, colorTexto);
+    prenderPixel(2, 4, offset, colorTexto);
+    prenderPixel(2, 6, offset, colorTexto);
+    prenderPixel(3, 2, offset, colorTexto);
+    prenderPixel(3, 4, offset, colorTexto);
+    prenderPixel(3, 6, offset, colorTexto);
+    prenderPixel(4, 2, offset, colorTexto);
+    prenderPixel(4, 5, offset, colorTexto);
+}
+
+void dibujarT(int offset) {
+    prenderPixel(0,2, offset, colorTexto);
+    prenderPixel(1,2, offset, colorTexto);
+    prenderPixel(2,0, offset, colorTexto);
+    prenderPixel(2,1, offset, colorTexto);
+    prenderPixel(2,2, offset, colorTexto);
+    prenderPixel(2,3, offset, colorTexto);
+    prenderPixel(2,4, offset, colorTexto);
+    prenderPixel(2,5, offset, colorTexto);
+    prenderPixel(3,2, offset, colorTexto);
+    prenderPixel(3,6, offset, colorTexto);
+    prenderPixel(4,2, offset, colorTexto);
+    prenderPixel(4,5, offset, colorTexto);
+}
+
+void dibujarU(int offset) {
+    prenderPixel(0, 2, offset, colorTexto);
+    prenderPixel(0, 3, offset, colorTexto);
+    prenderPixel(0, 4, offset, colorTexto);
+    prenderPixel(0, 5, offset, colorTexto);
+    prenderPixel(1, 6, offset, colorTexto);
+    prenderPixel(2, 6, offset, colorTexto);
+    prenderPixel(3, 5, offset, colorTexto);
+    prenderPixel(4, 2, offset, colorTexto);
+    prenderPixel(4, 3, offset, colorTexto);
+    prenderPixel(4, 4, offset, colorTexto);
+    prenderPixel(4, 5, offset, colorTexto);
+    prenderPixel(4, 6, offset, colorTexto);
+}
+
+void dibujarV(int offset) {
+    prenderPixel(0, 2, offset, colorTexto);
+    prenderPixel(0, 3, offset, colorTexto);
+    prenderPixel(0, 4, offset, colorTexto);
+    prenderPixel(1, 5, offset, colorTexto);
+    prenderPixel(2, 6, offset, colorTexto);
+    prenderPixel(3, 5, offset, colorTexto);
+    prenderPixel(4, 2, offset, colorTexto);
+    prenderPixel(4, 3, offset, colorTexto);
+    prenderPixel(4, 4, offset, colorTexto);   
+}
+
+void dibujarW(int offset) {
+    prenderPixel(0, 2, offset, colorTexto);
+    prenderPixel(0, 3, offset, colorTexto);
+    prenderPixel(0, 4, offset, colorTexto);
+    prenderPixel(0, 5, offset, colorTexto);
+    prenderPixel(1, 6, offset, colorTexto);
+    prenderPixel(2, 4, offset, colorTexto);
+    prenderPixel(2, 5, offset, colorTexto);
+    prenderPixel(3, 6, offset, colorTexto);
+    prenderPixel(4, 2, offset, colorTexto);
+    prenderPixel(4, 3, offset, colorTexto);
+    prenderPixel(4, 4, offset, colorTexto);  
+    prenderPixel(4, 5, offset, colorTexto); 
+}
+
+void dibujarX(int offset) {
+    prenderPixel(0, 2, offset, colorTexto);
+    prenderPixel(0, 6, offset, colorTexto);
+    prenderPixel(1, 3, offset, colorTexto);
+    prenderPixel(1, 5, offset, colorTexto);
+    prenderPixel(2, 4, offset, colorTexto);
+    prenderPixel(3, 3, offset, colorTexto);
+    prenderPixel(3, 5, offset, colorTexto);
+    prenderPixel(4, 2, offset, colorTexto);
+    prenderPixel(4, 6, offset, colorTexto); 
+}
+
+void dibujarY(int offset) {
+    prenderPixel(0, 2, offset, colorTexto);
+    prenderPixel(0, 3, offset, colorTexto);
+    prenderPixel(0, 6, offset, colorTexto);
+    prenderPixel(1, 4, offset, colorTexto);
+    prenderPixel(1, 7, offset, colorTexto);
+    prenderPixel(2, 4, offset, colorTexto);
+    prenderPixel(2, 7, offset, colorTexto);
+    prenderPixel(3, 4, offset, colorTexto);
+    prenderPixel(3, 7, offset, colorTexto);
+    prenderPixel(4, 2, offset, colorTexto);
+    prenderPixel(4, 3, offset, colorTexto);
+    prenderPixel(4, 4, offset, colorTexto);
+    prenderPixel(4, 5, offset, colorTexto);
+    prenderPixel(4, 6, offset, colorTexto); 
+}
+
+void dibujarZ(int offset) {
+    prenderPixel(0, 2, offset, colorTexto);
+    prenderPixel(0, 6, offset, colorTexto);
+    prenderPixel(1, 2, offset, colorTexto);
+    prenderPixel(1, 5, offset, colorTexto);
+    prenderPixel(1, 6, offset, colorTexto);
+    prenderPixel(2, 2, offset, colorTexto);
+    prenderPixel(2, 4, offset, colorTexto);
+    prenderPixel(2, 6, offset, colorTexto);
+    prenderPixel(3, 2, offset, colorTexto);
+    prenderPixel(3, 3, offset, colorTexto);
+    prenderPixel(3, 6, offset, colorTexto);
+    prenderPixel(4, 2, offset, colorTexto);
+    prenderPixel(4, 6, offset, colorTexto); 
+}
 
 void prenderPixel(int x, int y, int offset, uint32_t colorTexto) {
 
