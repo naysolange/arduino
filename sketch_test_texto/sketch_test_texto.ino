@@ -47,7 +47,7 @@ void loop() {
   matrix.clear();
   matrix.setCursor(0,0);
   matrix.print("z");*/
-  dibujarZ(0);
+  dibujarUConTilde(0);
   matrix.show();
   
 }
@@ -66,6 +66,12 @@ void dibujarA(int offset) {
     prenderPixel(2,6, offset, colorTexto);
     prenderPixel(3,6, offset, colorTexto);
     prenderPixel(4,6, offset, colorTexto);
+}
+
+void dibujarAConTilde(int offset) {
+    dibujarA(offset);
+    prenderPixel(3,0, offset, colorTexto);
+    prenderPixel(2,1, offset, colorTexto);
 }
 
 void dibujarB(int offset) {
@@ -137,6 +143,12 @@ void dibujarE(int offset) {
     prenderPixel(4,4, offset, colorTexto);
 }
 
+void dibujarEConTilde(int offset) {
+    dibujarE(offset);
+    prenderPixel(3,0, offset, colorTexto);
+    prenderPixel(2,1, offset, colorTexto);
+}
+
 void dibujarF(int offset) {
     prenderPixel(1,3, offset, colorTexto);
     prenderPixel(2,1, offset, colorTexto);
@@ -196,6 +208,19 @@ void dibujarI(int offset) {
     prenderPixel(2,5, offset, colorTexto);
     prenderPixel(2,6, offset, colorTexto);
     prenderPixel(3,6, offset, colorTexto);
+}
+
+void dibujarIConTilde(int offset) {
+    prenderPixel(1,2, offset, colorTexto);
+    prenderPixel(1,6, offset, colorTexto);
+    prenderPixel(2,1, offset, colorTexto);
+    prenderPixel(2,2, offset, colorTexto);
+    prenderPixel(2,3, offset, colorTexto);
+    prenderPixel(2,4, offset, colorTexto);
+    prenderPixel(2,5, offset, colorTexto);
+    prenderPixel(2,6, offset, colorTexto);
+    prenderPixel(3,6, offset, colorTexto);
+    prenderPixel(3,0, offset, colorTexto);
 }
 
 void dibujarJ(int offset) {
@@ -304,6 +329,12 @@ void dibujarO(int offset) {
     prenderPixel(3,6, offset, colorTexto);
 }
 
+void dibujarOConTilde(int offset) {
+    dibujarO(offset);
+    prenderPixel(3,0, offset, colorTexto);
+    prenderPixel(2,1, offset, colorTexto);
+}
+
 void dibujarP(int offset) {
     prenderPixel(0, 2, offset, colorTexto);
     prenderPixel(0, 3, offset, colorTexto);
@@ -397,6 +428,12 @@ void dibujarU(int offset) {
     prenderPixel(4, 4, offset, colorTexto);
     prenderPixel(4, 5, offset, colorTexto);
     prenderPixel(4, 6, offset, colorTexto);
+}
+
+void dibujarUConTilde(int offset) {
+    dibujarU(offset);
+    prenderPixel(3,0, offset, colorTexto);
+    prenderPixel(2,1, offset, colorTexto);
 }
 
 void dibujarV(int offset) {
