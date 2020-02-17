@@ -46,8 +46,9 @@ void loop() {
   matrix.setBrightness(50);
   matrix.clear();
   matrix.setCursor(0,0);
-  matrix.print("z");*/
-  dibujarUConTilde(0);
+  matrix.print("?");*/
+  dibujarPreguntaApertura(0);
+  dibujarPreguntaCierre(6);
   matrix.show();
   
 }
@@ -370,7 +371,6 @@ void dibujarQ(int offset) {
     prenderPixel(4, 7, offset, colorTexto);
 }
 
-
 void dibujarR(int offset) {
     prenderPixel(0, 2, offset, colorTexto);
     prenderPixel(0, 3, offset, colorTexto);
@@ -382,7 +382,6 @@ void dibujarR(int offset) {
     prenderPixel(3, 2, offset, colorTexto);
     prenderPixel(4, 3, offset, colorTexto);
 }
-
 
 void dibujarS(int offset) {
     prenderPixel(0, 3, offset, colorTexto);
@@ -434,6 +433,12 @@ void dibujarUConTilde(int offset) {
     dibujarU(offset);
     prenderPixel(3,0, offset, colorTexto);
     prenderPixel(2,1, offset, colorTexto);
+}
+
+void dibujarUConDieresis(int offset) {
+    dibujarU(offset);
+    prenderPixel(1,1, offset, colorTexto);
+    prenderPixel(3,1, offset, colorTexto);
 }
 
 void dibujarV(int offset) {
@@ -506,6 +511,128 @@ void dibujarZ(int offset) {
     prenderPixel(3, 6, offset, colorTexto);
     prenderPixel(4, 2, offset, colorTexto);
     prenderPixel(4, 6, offset, colorTexto); 
+}
+
+void dibujarParentesisApertura(int offset) {
+    prenderPixel(1, 2, offset, colorTexto);
+    prenderPixel(1, 3, offset, colorTexto);
+    prenderPixel(1, 4, offset, colorTexto);
+    prenderPixel(2, 1, offset, colorTexto);
+    prenderPixel(2, 5, offset, colorTexto);
+    prenderPixel(3, 0, offset, colorTexto);
+    prenderPixel(3, 6, offset, colorTexto); 
+}
+
+void dibujarParentesisCierre(int offset) {
+    prenderPixel(1, 0, offset, colorTexto);
+    prenderPixel(1, 6, offset, colorTexto);
+    prenderPixel(2, 1, offset, colorTexto);
+    prenderPixel(2, 5, offset, colorTexto);
+    prenderPixel(3, 2, offset, colorTexto);
+    prenderPixel(3, 3, offset, colorTexto); 
+    prenderPixel(3, 4, offset, colorTexto); 
+}
+
+void dibujarComa(int offset) {
+    prenderPixel(1, 7, offset, colorTexto);
+    prenderPixel(2, 4, offset, colorTexto);
+    prenderPixel(2, 5, offset, colorTexto);
+    prenderPixel(2, 6, offset, colorTexto);
+    prenderPixel(3, 4, offset, colorTexto);
+    prenderPixel(3, 5, offset, colorTexto); 
+}
+
+void dibujarPuntoYComa(int offset) {
+    prenderPixel(1, 6, offset, colorTexto);
+    prenderPixel(2, 2, offset, colorTexto);
+    prenderPixel(2, 4, offset, colorTexto);
+    prenderPixel(2, 5, offset, colorTexto); 
+}
+
+void dibujarDosPuntos(int offset) {
+    prenderPixel(2, 2, offset, colorTexto);
+    prenderPixel(2, 4, offset, colorTexto); 
+}
+
+void dibujarPunto(int offset) {
+    prenderPixel(2, 5, offset, colorTexto);
+    prenderPixel(2, 6, offset, colorTexto);
+    prenderPixel(3, 5, offset, colorTexto);
+    prenderPixel(3, 6, offset, colorTexto); 
+}
+
+void dibujarGuionMedio(int offset) {
+    prenderPixel(0, 3, offset, colorTexto);
+    prenderPixel(1, 3, offset, colorTexto);
+    prenderPixel(2, 3, offset, colorTexto);
+    prenderPixel(3, 3, offset, colorTexto); 
+    prenderPixel(4, 3, offset, colorTexto); 
+}
+
+void dibujarComilla(int offset) {
+    prenderPixel(1, 0, offset, colorTexto);
+    prenderPixel(1, 1, offset, colorTexto);
+    prenderPixel(1, 2, offset, colorTexto);
+    prenderPixel(3, 0, offset, colorTexto);
+    prenderPixel(3, 1, offset, colorTexto);
+    prenderPixel(3, 2, offset, colorTexto);  
+}
+
+void dibujarAdmiracionApertura(int offset) {
+    prenderPixel(2, 3, offset, colorTexto);
+    prenderPixel(2, 4, offset, colorTexto);
+    prenderPixel(2, 5, offset, colorTexto);
+    prenderPixel(2, 6, offset, colorTexto);
+    prenderPixel(2, 7, offset, colorTexto);
+    prenderPixel(2, 1, offset, colorTexto);  
+}
+
+void dibujarAdmiracionCierre(int offset) {
+    prenderPixel(2, 0, offset, colorTexto);
+    prenderPixel(2, 1, offset, colorTexto);
+    prenderPixel(2, 2, offset, colorTexto);
+    prenderPixel(2, 3, offset, colorTexto);
+    prenderPixel(2, 4, offset, colorTexto);
+    prenderPixel(2, 6, offset, colorTexto);  
+}
+
+void dibujarPreguntaApertura(int offset) {
+    prenderPixel(0, 5, offset, colorTexto);
+    prenderPixel(0, 6, offset, colorTexto);
+    prenderPixel(1, 4, offset, colorTexto);
+    prenderPixel(1, 7, offset, colorTexto);
+    prenderPixel(2, 1, offset, colorTexto);
+    prenderPixel(2, 3, offset, colorTexto);  
+    prenderPixel(2, 4, offset, colorTexto);  
+    prenderPixel(2, 7, offset, colorTexto); 
+    prenderPixel(3, 7, offset, colorTexto);   
+    prenderPixel(4, 6, offset, colorTexto);  
+}
+
+void dibujarPreguntaCierre(int offset) {
+    prenderPixel(0, 1, offset, colorTexto);
+    prenderPixel(1, 0, offset, colorTexto);
+    prenderPixel(2, 0, offset, colorTexto);
+    prenderPixel(2, 3, offset, colorTexto);
+    prenderPixel(2, 4, offset, colorTexto);
+    prenderPixel(2, 6, offset, colorTexto);  
+    prenderPixel(3, 0, offset, colorTexto);  
+    prenderPixel(3, 3, offset, colorTexto); 
+    prenderPixel(4, 1, offset, colorTexto);   
+    prenderPixel(4, 2, offset, colorTexto);  
+}
+
+void dibujarEspacio(int offset) {
+  
+}
+
+void dibujarEnter(int offset) {
+
+  dibujarEspacio(offset);
+  dibujarEspacio(offset);
+  dibujarEspacio(offset);
+  dibujarEspacio(offset);
+  dibujarEspacio(offset);
 }
 
 void prenderPixel(int x, int y, int offset, uint32_t colorTexto) {
