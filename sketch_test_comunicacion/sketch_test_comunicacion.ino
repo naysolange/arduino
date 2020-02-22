@@ -692,8 +692,9 @@ int obtenerPixel(int x, int y) {
 
 void mostrarTexto(char* texto, int nuevoOffset, int longitudTexto) {
 
-  for(int i=0; i<longitudTexto; i++) {
+  for(int i=0; i<longitudTexto-1; i++) {
     char letra = texto[i];
+    
     switch(letra) {
       case 'a':
         dibujarA(nuevoOffset+offset*i);
@@ -737,6 +738,9 @@ void mostrarTexto(char* texto, int nuevoOffset, int longitudTexto) {
       case 'n':
         dibujarN(nuevoOffset+offset*i);
         break;
+      case -15:
+        dibujarEnie(nuevoOffset+offset*i);
+        break;
       case 'o':
         dibujarO(nuevoOffset+offset*i);
         break;
@@ -773,13 +777,13 @@ void mostrarTexto(char* texto, int nuevoOffset, int longitudTexto) {
       case 'z':
         dibujarZ(nuevoOffset+offset*i);
         break;
-      case '¡':
+      case -95:
         dibujarAdmiracionApertura(nuevoOffset+offset*i);
         break;
       case '!':
         dibujarAdmiracionCierre(nuevoOffset+offset*i);
         break;
-      case '¿':
+      case -65:
         dibujarPreguntaApertura(nuevoOffset+offset*i);
         break;
       case '?':
@@ -806,22 +810,22 @@ void mostrarTexto(char* texto, int nuevoOffset, int longitudTexto) {
       case ')':
         dibujarParentesisCierre(nuevoOffset+offset*i);
         break;
-      case 'á':
+      case -31:
         dibujarAConTilde(nuevoOffset+offset*i);
         break;
-      case 'é':
+      case -23:
         dibujarEConTilde(nuevoOffset+offset*i);
         break;
-      case 'í':
+      case -19:
         dibujarIConTilde(nuevoOffset+offset*i);
         break;
-      case 'ó':
+      case -13:
         dibujarOConTilde(nuevoOffset+offset*i);
         break;
-      case 'ú':
+      case -6:
         dibujarUConTilde(nuevoOffset+offset*i);
         break;
-      case 'ü':
+      case -4:
         dibujarUConDieresis(nuevoOffset+offset*i);
         break;
       case '\n':
