@@ -22,11 +22,11 @@ void loop() {
    mostrarPatronLuminico();
     
    if(mostrarPoesia) {
-     int indice = 10;
+     int indice = 150;
      char poesia[indice];
   
-     for(int i=0; i<10; i++) {
-       poesia[i] = 'h';
+     for(int i=0; i<151; i++) {
+       poesia[i] = 'a';
      }
       
      scroll(poesia);

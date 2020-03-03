@@ -2,6 +2,8 @@
 
 #define PIN_TIRA_LED 6 
 #define CANT_PIXELS 480
+#define MIC 2
+#define LED 3
 
 Adafruit_NeoPixel matrix(CANT_PIXELS, PIN_TIRA_LED, NEO_GRB + NEO_KHZ800);
 
@@ -9,37 +11,65 @@ int offset = 6;
 String PEDIR_TEXTO = "texto";
 
 uint32_t colorTexto = matrix.Color(0, 90, 20);
-boolean pedirTexto = true;
-
+boolean noEstaMostrandoTexto = true;
 
 void setup() {
+  pinMode(MIC, INPUT);
+  pinMode(LED, OUTPUT);
   Serial.begin(9600);
+  randomSeed(millis());
   matrix.begin();
 }
+char bufer[160];
+int leido = 0;
+boolean mostrarPoesia = false;
 
 void loop() {
 
-     matrix.clear();
+   
+    // Sensado de soplido
+    int valorMicLeido = digitalRead(MIC);
 
-     mostrarPatronLuminico();
-
-    if(pedirTexto) {
-     Serial.println(PEDIR_TEXTO);
-     pedirTexto = false;
-    }
-
-    if(Serial.available() > 0) {
-      char bufer[150];
-      int leido = Serial.readBytesUntil('|', bufer, 150);
-
-      char poesia[leido+1];
-      for(int i=0; i<leido; i++) {
-        poesia[i] = bufer[i];
-      }
-      poesia[leido+1] = '\0';
+    if(valorMicLeido == HIGH && !mostrarPoesia) {
+      digitalWrite(LED, HIGH);
+      delay(1000);
+      digitalWrite(LED, LOW);
+      Serial.println(PEDIR_TEXTO);
       
+    } else if(Serial.available() > 0 && !mostrarPoesia) {
+           
+      int caracterLeido = Serial.read();
+      
+      bufer[leido] = caracterLeido;
+      
+      if(caracterLeido == '|') {
+        mostrarPoesia = true;
+      }
+
+      leido++;
+             
+    } else if(mostrarPoesia) {
+
+      char poesia[leido+2];
+      
+      for(int j=0; j<leido; j++) {
+        poesia[j] = bufer[j];
+      }
+  
+      poesia[leido] = '\0';
+      poesia[leido+1] = '\r';
+      poesia[leido+2] = '\n';
+     
       scroll(poesia);
-    } 
+    
+      mostrarPoesia = false;
+      leido = 0;
+      bufer[0] = '\0';
+
+    } else {
+       matrix.clear();
+       mostrarPatronLuminico();
+    }
    
   
 }
@@ -690,7 +720,7 @@ int obtenerPixel(int x, int y) {
   return y*60 + x;
 }
 
-void mostrarTexto(char* texto, int nuevoOffset, int longitudTexto) {
+void mostrarTexto(char texto[], int nuevoOffset, int longitudTexto) {
 
   for(int i=0; i<longitudTexto-1; i++) {
     char letra = texto[i];
@@ -849,13 +879,9 @@ void mostrarTexto(char* texto, int nuevoOffset, int longitudTexto) {
   
 }
 
-
 void scroll(char texto[]) {
 
   int longitudTexto = strlen(texto);
-
-  //Serial.println(longitudTexto);
-
   int nuevoOffset = 60;
   int i = 0;
 
