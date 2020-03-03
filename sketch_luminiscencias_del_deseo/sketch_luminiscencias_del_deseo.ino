@@ -95,7 +95,7 @@ void mostrarPoesia() {
 
 void mostrarPatronLuminico() {
 
- uint32_t colorLed;
+  uint32_t colorLed;
 
   int led1APrender = random(0,CANT_PIXELS);
   colorLed = obtenerColorRandom();
@@ -118,15 +118,19 @@ void mostrarPatronLuminico() {
   colorLed = obtenerColorRandom();
   matrix.setPixelColor(led5APrender, colorLed);
 
+  int led6APrender = random(0,CANT_PIXELS);
+  colorLed = obtenerColorRandom();
+  matrix.setPixelColor(led6APrender, colorLed);
+
   matrix.show(); 
   colorTexto = colorLed;
-  delay(200);
+  delay(100);
   
 }
 
 uint32_t obtenerColorRandom() {
   uint32_t colorLed;
-  switch(random(1,3)) {
+  switch(random(1,4)) {
     case 1:
       // Magenta
       colorLed = matrix.Color(random(50,200), 0, random(10,100));
@@ -135,6 +139,10 @@ uint32_t obtenerColorRandom() {
      // Naranja
       colorLed = matrix.Color(random(200,255), random(50,100), 0);
       break;
+    case 3:
+      // Rojo
+      colorLed = matrix.Color(random(50,190), 0, random(0,8));
+      break;   
   }
 
   return colorLed;
