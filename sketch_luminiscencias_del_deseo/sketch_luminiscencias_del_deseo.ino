@@ -4,6 +4,8 @@
 #define CANT_PIXELS 480
 #define MIC 2
 #define LED_PLACA 3
+#define LED_CUBO 4
+#define DELAY_LED 2000
 
 Adafruit_NeoPixel matrix(CANT_PIXELS, PIN_TIRA_LED, NEO_GRB + NEO_KHZ800);
 
@@ -11,15 +13,16 @@ int offset = 6;
 String PEDIR_TEXTO = "texto";
 
 uint32_t colorTexto = matrix.Color(0, 90, 20);
-boolean noEstaMostrandoTexto = true;
 
 void setup() {
   pinMode(MIC, INPUT);
   pinMode(LED_PLACA, OUTPUT);
+  pinMode(LED_CUBO, OUTPUT);
   Serial.begin(9600);
   randomSeed(millis());
   matrix.begin();
 }
+
 char bufer[160];
 int leido = 0;
 boolean mostrarPoesiaEnPantalla = false;
@@ -34,12 +37,14 @@ void loop() {
 
     if(valorMicLeido == HIGH && !mostrarPoesiaEnPantalla) {
         pedirPoesia();
-        prenderYApagarLedDePlaca();
+        prenderYApagarLedPlaca();
       
     } else if(Serial.available() > 0 && !mostrarPoesiaEnPantalla) {
         leerCaracter();
-             
+        digitalWrite(LED_CUBO, HIGH);
+                     
     } else if(mostrarPoesiaEnPantalla) {
+        digitalWrite(LED_CUBO, LOW);
         mostrarPoesia();
 
     } else {
@@ -52,9 +57,9 @@ void pedirPoesia() {
    Serial.println(PEDIR_TEXTO);
 }
 
-void prenderYApagarLedDePlaca() {
+void prenderYApagarLedPlaca() {
    digitalWrite(LED_PLACA, HIGH);
-   delay(1000);
+   delay(DELAY_LED);
    digitalWrite(LED_PLACA, LOW);
 }
 
@@ -123,7 +128,7 @@ void mostrarPatronLuminico() {
   matrix.setPixelColor(led6APrender, colorLed);
 
   matrix.show(); 
-  colorTexto = colorLed;
+  colorTexto = obtenerColorRandom();
   delay(100);
   
 }
