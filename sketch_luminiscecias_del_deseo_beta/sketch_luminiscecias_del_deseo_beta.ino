@@ -4,7 +4,7 @@
 #define CANT_PIXELS 480
 #define LED_CUBO 4
 #define DELAY_LED 2000
-#define TIEMPO_ENTRE_POESIAS 6000
+#define TIEMPO_ENTRE_POESIAS 300
 
 Adafruit_NeoPixel matrix(CANT_PIXELS, PIN_TIRA_LED, NEO_GRB + NEO_KHZ800);
 
@@ -28,27 +28,38 @@ int leido = 0;
 boolean mostrarPoesiaEnPantalla = false;
 boolean poesiaPedida = false;
 boolean valorMicLeido;
+long vueltas = 0;
 
 void loop() {
 
+    vueltas++;
+    //Serial.println(vueltas); ////////////////////////
+
     // Sensa el soplido solo cuando no tiene que mostrar una poesía 
     if(!mostrarPoesiaEnPantalla && !poesiaPedida) {
-      unsigned long tiempoActual = millis();
-      valorMicLeido = (tiempoActual - tiempoUltimaPoesiaMostrada >= TIEMPO_ENTRE_POESIAS);
+      if(vueltas >= 700) {
+        valorMicLeido = true;
+         //Serial.println("micLeido"); //////////////////
+      }
+     
     }
 
     if(valorMicLeido && !mostrarPoesiaEnPantalla && !poesiaPedida) {
+       //Serial.println("pedirPoesia"); //////////////////
         pedirPoesia();
       
     } else if(Serial.available() > 0 && !mostrarPoesiaEnPantalla) {
+       //Serial.println("leerCaracter"); //////////////////
         leerCaracter();
         digitalWrite(LED_CUBO, HIGH);
                      
     } else if(mostrarPoesiaEnPantalla) {
+       //Serial.println("mostrarPoesia"); //////////////////
         digitalWrite(LED_CUBO, LOW);
         mostrarPoesia();
 
     } else {
+       //Serial.println("mostrarPatron"); //////////////////
         matrix.clear();
         mostrarPatronLuminico();
     }
@@ -92,7 +103,9 @@ void mostrarPoesia() {
   mostrarPoesiaEnPantalla = false;
   leido = 0;
   bufer[0] = '\0';
-  tiempoUltimaPoesiaMostrada = millis();
+  //tiempoUltimaPoesiaMostrada = millis();
+  vueltas = 0;
+  valorMicLeido = false;
   poesiaPedida = false;
 
 }
