@@ -15,8 +15,8 @@ void setup() {
 }
 
 void loop() { 
-  /*
-  for(int c=0;c<15;c++){
+  
+  /*for(int c=0;c<15;c++){
     lcd.scrollDisplayLeft();
     delay(400);
   }

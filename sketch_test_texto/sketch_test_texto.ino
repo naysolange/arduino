@@ -1,7 +1,7 @@
 #include <Adafruit_NeoPixel.h>
 
 #define PIN_TIRA_LED 6 
-#define NUMPIXELS 20
+#define NUMPIXELS 480
 #define DELAYVAL 200
 
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN_TIRA_LED, NEO_GRB + NEO_KHZ800);

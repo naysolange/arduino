@@ -32,7 +32,7 @@ struct Loop
   Loop(uint8_t totchilds, bool timebased, uint16_t tottime) {currentTime=0;currentChild=0;childs=totchilds;timeBased=timebased;cycles=tottime;}
 };
 
-Strip strip_0(20, 6, 20, NEO_GRB + NEO_KHZ800);
+Strip strip_0(480, 6, 480, NEO_GRB + NEO_KHZ800);
 struct Loop strip0loop0(1, false, 1);
 
 //[GLOBAL_VARIABLES]
@@ -85,22 +85,22 @@ uint8_t strip0_loop0_eff0() {
   uint16_t ind;
   for(uint16_t j=0;j<60;j++) {
     ind = strip_0.effStep + j * 1;
-    switch((int)((ind % 60) / 20)) {
-      case 0: factor1 = 1.0 - ((float)(ind % 60 - 0 * 20) / 20);
-              factor2 = (float)((int)(ind - 0) % 60) / 20;
+    switch((int)((ind % 480) / 20)) {
+      case 0: factor1 = 1.0 - ((float)(ind % 480 - 0 * 20) / 20);
+              factor2 = (float)((int)(ind - 0) % 480) / 20;
               strip_0.strip.setPixelColor(j, 255 * factor1 + 0 * factor2, 0 * factor1 + 255 * factor2, 0 * factor1 + 0 * factor2);
               break;
-      case 1: factor1 = 1.0 - ((float)(ind % 60 - 1 * 20) / 20);
-              factor2 = (float)((int)(ind - 20) % 60) / 20;
+      case 1: factor1 = 1.0 - ((float)(ind % 480 - 1 * 20) / 20);
+              factor2 = (float)((int)(ind - 20) % 480) / 20;
               strip_0.strip.setPixelColor(j, 0 * factor1 + 0 * factor2, 255 * factor1 + 0 * factor2, 0 * factor1 + 255 * factor2);
               break;
-      case 2: factor1 = 1.0 - ((float)(ind % 60 - 2 * 20) / 20);
-              factor2 = (float)((int)(ind - 40) % 60) / 20;
+      case 2: factor1 = 1.0 - ((float)(ind % 480 - 2 * 20) / 20);
+              factor2 = (float)((int)(ind - 40) % 480) / 20;
               strip_0.strip.setPixelColor(j, 0 * factor1 + 255 * factor2, 0 * factor1 + 0 * factor2, 255 * factor1 + 0 * factor2);
               break;
     }
   }
-  if(strip_0.effStep >= 60) {strip_0.Reset(); return 0x03; }
+  if(strip_0.effStep >= 480) {strip_0.Reset(); return 0x03; }
   else strip_0.effStep++;
   return 0x01;
 }
